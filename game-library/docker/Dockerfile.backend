@@ -1,0 +1,39 @@
+FROM ubuntu:22.04
+
+# Install build tools and runtime deps
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    cmake \
+    git \
+    wget \
+    ca-certificates \
+    libssl-dev \
+    libjsoncpp-dev \
+    libpq-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install nlohmann/json via single header (fallback)
+RUN mkdir -p /usr/local/include/nlohmann && \
+    wget -qO- https://raw.githubusercontent.com/nlohmann/json/develop/single_include/nlohmann/json.hpp > /usr/local/include/nlohmann/json.hpp
+
+# Build and install Drogon (required by project)
+RUN git clone --depth 1 https://github.com/drogonframework/drogon.git /tmp/drogon && \
+    mkdir -p /tmp/drogon/build && cd /tmp/drogon/build && \
+    cmake .. && make -j$(nproc) && make install && ldconfig
+
+# Create app user
+RUN useradd -ms /bin/bash app
+WORKDIR /home/app
+USER app
+
+# Copy project into container
+COPY --chown=app:app .. /home/app/project
+WORKDIR /home/app/project/backend
+
+# Build the backend with CMake
+RUN mkdir -p build && cd build && cmake .. && cmake --build . --config Release --target game-library
+
+EXPOSE 8080
+CMD ["/home/app/project/backend/build/game-library"]

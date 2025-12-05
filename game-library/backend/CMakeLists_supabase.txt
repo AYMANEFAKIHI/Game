@@ -1,0 +1,16 @@
+# This CMake snippet documents required libraries for Supabase REST client
+# Not automatically included in the main build. Use as reference.
+
+# Requires: nlohmann_json, httplib (single-header) or cpp-httplib
+# Example usage in your CMakeLists.txt:
+#
+# add_subdirectory(external/httplib)
+# find_package(nlohmann_json REQUIRED)
+# add_executable(server src/main.cpp src/SupabaseClient.cpp ...)
+# target_link_libraries(server PRIVATE nlohmann_json::nlohmann_json)
+# target_include_directories(server PRIVATE ${CMAKE_SOURCE_DIR}/backend/include)
+
+# If you want to build the sample standalone:
+# cmake -S . -B build
+# cmake --build build
+

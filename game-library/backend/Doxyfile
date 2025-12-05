@@ -1,0 +1,74 @@
+# Board Game Library Doxyfile
+# Doxygen configuration for code documentation generation
+
+PROJECT_NAME           = "Board Game Library"
+PROJECT_NUMBER         = 1.0.0
+PROJECT_BRIEF          = "A complete board game library management system with borrowing capabilities"
+PROJECT_LOGO           = 
+
+# Output directories
+OUTPUT_DIRECTORY       = ./docs/doxygen
+CREATE_SUBDIRS         = NO
+OUTPUT_LANGUAGE        = English
+
+# Input files
+INPUT                  = ./src ./include
+RECURSIVE              = YES
+FILE_PATTERNS          = *.h *.hpp *.cpp *.c
+EXCLUDE                = 
+EXCLUDE_PATTERNS       = */build/* */node_modules/*
+
+# Processing options
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+
+# Output format
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_LATEX         = YES
+LATEX_OUTPUT           = latex
+
+# Source code visualization
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+
+# Graph generation
+HAVE_DOT               = YES
+CLASS_DIAGRAMS         = YES
+DIRECTORY_GRAPH        = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+COLLABORATION_GRAPH    = YES
+
+# Markdown support
+USE_MDFILE_AS_MAINPAGE = ../README.md
+MARKDOWN_SUPPORT       = YES
+
+# Search
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+
+# Include path
+INCLUDE_PATH           = ./include ./src
+
+# Alphabetical index
+ALPHABETICAL_INDEX     = YES
+COLS_IN_ALPHA_INDEX    = 3
+
+# LaTeX output
+USE_PDFLATEX           = YES
+PDF_HYPERLINKS         = YES
+
+# Quality
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = 
+STRIP_FROM_INC_PATH    = 
+
+# Comments
+EXTRACT_ALL            = YES
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
